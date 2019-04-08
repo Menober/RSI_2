@@ -12,7 +12,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class MyClient {
-    private static String ipAddress = "192.168.1.96";
+    private static String ipAddress = "192.168.1.96/f2";
 
     public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException {
         setUpRegistry(args);

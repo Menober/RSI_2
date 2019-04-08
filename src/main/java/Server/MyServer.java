@@ -8,14 +8,20 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.security.Permission;
 
-public class MyServer{
+public class MyServer {
 
-    private static String ipAddress="192.168.1.96";
+    private static String ipAddress = "192.168.1.96/f2";
     private static RegistryImpl reg;
+
     public static void main(String[] args) throws RemoteException {
+        if (args.length != 0)
+            ipAddress += args[0];
         setUp();
-        implementObject1();
-        //implementObject2();
+        System.out.println(ipAddress);
+        if (args.length == 0)
+            implementObject1();
+        else
+            implementObject2();
     }
 
     private static void implementObject1() {
@@ -44,11 +50,11 @@ public class MyServer{
 
     private static void setUp() throws RemoteException {
         System.setProperty("java.security.policy", "srv.policy");
-        reg = (RegistryImpl) LocateRegistry.createRegistry(1099);
+        reg = (RegistryImpl) LocateRegistry.createRegistry(1098);
         if (System.getSecurityManager() == null) {
-            System.setSecurityManager(new SecurityManager(){
+            System.setSecurityManager(new SecurityManager() {
                 @Override
-                public void checkPermission(Permission perm){
+                public void checkPermission(Permission perm) {
 
                 }
             });
